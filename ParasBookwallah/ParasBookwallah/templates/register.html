@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+<div class="container border border-dark m-5 p-5 bg-white">
+        <h4 class="bg-dark text-white p-3 mb-3">Register</h4>
+        <form method="post">
+                {% csrf_token %}
+
+                {% for field in form %}
+                <div class="mb-3">
+                        {{field.label_tag}}
+                        {{field}}
+                        {% if field.errors %}
+
+                        <div class="col-auto">
+                                <span id="passwordHelpInline" class="form-text text-danger">
+                                        {{field.errors}}
+                                </span>
+                        </div>
+                        {% endif %}
+
+                        <div id="emailHelp" class="form-text">{{field.help_text}}</div>
+                </div>
+
+                {% endfor %}
+                <input class="btn btn-primary" type="submit" value="Register">
+
+        </form>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+        About
+{% endblock %}
+
+{% block content %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for i in Manga_Comics %}
+
+        {% include 'card.html' with p=i %}
+
+        {% endfor %}
+</div>
+{% endblock %}
