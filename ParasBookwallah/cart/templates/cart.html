@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+
+<h1>Cart</h1>
+<h1>Total:{{total}}</h1>
+<hr>
+{% for cartitem in cartitems %}
+
+<div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+                <div class="col-md-4">
+                        <img src="{{cartitem.products.Book_image.url}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                        <div class="card-body">
+                                <h5 class="card-title">{{cartitem.products.product_name}}</h5>
+                                <p class="card-text">{{cartitem.products.product_description}}</p>
+                                <p class="card-text"> Quantity:{{cartitem.quantity}}</p>
+                                <p class="card-text"><small
+                                                class="text-body-secondary">{{cartitem.products.product_price}}</small>
+                                </p>
+                                <form action="{% url 'update-cart' cartitem.id %}">
+                                        <button type="button" onclick="updateQuantity(-1,{{cartitem.id}})">-</button>
+                                        <input type="number" value="{{cartitem.quantity}}" name="quantity"
+                                                id="quantity {{cartitem.id}}" min="1" max="10">
+                                        <button type="button" onclick="updateQuantity(1,{{cartitem.id}})">+</button>
+                                        <input class="btn btn-primary" type="submit" value="update Cart">
+                                </form>
+                                <a class="btn btn-danger" href="{% url 'delete-cartitem' cartitem.id %}"
+                                        role="button">Delete</a>
+                        </div>
+                </div>
+        </div>
+</div>
+
+<!-- <li>{{cartitem.quantity}} </li>
+                <li>{{cartitem.products.product_name}} </li>
+                <li>{{cartitem.products.product_price}} </li>
+                <img src="{{cartitem.products.product_image.url}}">
+                
+                <hr> -->
+
+{% endfor %}
+
+<table class="table" >
+        <thead>
+                <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Product name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                </tr>
+        </thead>
+        <tbody>
+                {% for cartitem in cartitems %}
+                <tr>
+                        <th scope="row">{{cartitem.products.id}}</th>
+                        <td>{{cartitem.products.Book_name}}</td>
+                        <td>{{cartitem.products.Book_price}}</td>
+                        <td>{{cartitem.quantity}}</td>
+                        <td>{{cartitem.quantity | multiply:cartitem.products.Book_price}}</td>
+                        <td>{{cartitem.quantity | divide:cartitem.products.Book_price}}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+</table>
+
+<a class="btn btn-primary m-4" href="{% url 'checkout' %}" role="button">Checkout</a>
+
+
+{% endblock %}

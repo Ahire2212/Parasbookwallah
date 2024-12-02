@@ -20,7 +20,7 @@ def user_login(request):
         if user is not None:
             login(request,user)
             print(request.user.first_name)
-            return HttpResponseRedirect("/login")
+            return HttpResponseRedirect("/")
         else:
             return render(request,"login.html",{"message":"Login failed"})
 

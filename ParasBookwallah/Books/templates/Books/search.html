@@ -5,11 +5,15 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-        {% for i in Comics %}
+        {% for i in products %}
+
+
 
         {% include 'card.html' with p=i %}
 
         {% endfor %}
+
 </div>
 {% endblock %}

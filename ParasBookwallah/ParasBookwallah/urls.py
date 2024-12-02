@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path,include
 from .import views
 # # adding urls.py from products application
-# from Books import urls
 from Books import urls
+from cart import urls
 # # . means same package
 
 from django.conf.urls.static import static
@@ -32,7 +32,8 @@ urlpatterns = [
     path('register/',views.register,name="register"),
     path('login/',views.user_login,name="login"),
     path('logout/',views.user_logout,name="logout"),
-    path('Books/',include('Books.urls'))
+    path('Books/',include('Books.urls')),
+    path('cart/',include('cart.urls'))
 ]
 
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -28,3 +28,8 @@ def Box_set_Books(request):
     items=Books.cust_manager.Box_set_Books()
     return render(request,"Books/Box_set_Books.html",{"Box_set_Books":items})
 
+def search(request):
+    keyword = request.GET.get("keyword")
+    items = Books.cust_manager.all().filter(Book_name__icontains = keyword)
+    return render(request,"Books/search.html", {"products":items})
+

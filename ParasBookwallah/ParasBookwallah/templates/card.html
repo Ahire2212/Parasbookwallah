@@ -27,6 +27,13 @@
             <p class="card-text">{{p.Book_descripition}}</p>
             <p class="card-text">Price : {{p.Book_price}}</p>
 
+            <form action="{% url 'add-to-cart' p.id %}">
+                <button type="button" onclick="updateQuantity(-1,{{p.id}})">-</button>
+                <input type="number" value="1" name="quantity" id="quantity {{p.id}}" min="1" max="10">
+                <button type="button" onclick="updateQuantity(1,{{p.id}})">+</button>
+                <input class="btn btn-primary" type="submit" value="Add to cart">
+            </form>
+
         </div>
       </div>
     </div>

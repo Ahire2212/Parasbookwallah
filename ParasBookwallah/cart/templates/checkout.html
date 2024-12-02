@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+        
+{% endblock %}
+
+{% block content %}
+        <h1>Checkout</h1>
+
+<div class="container border border-dark border-5 p-4 mb-3 bg-white">
+<form action="" method="post">
+        
+        {% csrf_token %}
+        
+        {% for field in form %}
+
+        <div class="mb-3">
+
+                {{field.label_tag}}
+                {{field}}
+
+        </div>
+
+        {% endfor %}
+
+        <input type="submit" class="btn btn-dark">
+
+
+</form>
+</div>
+        
+{% endblock %}
